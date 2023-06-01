@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PusherController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::controller(PusherController::class)->group(function() {
+    Route::get('/', 'index');
+    Route::post('/broadcast', 'broadcast');
+    Route::post('/receive', 'receive');
 });
